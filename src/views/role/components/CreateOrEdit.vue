@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {saveOrUpdateRole} from '@/services/menu'
+import {saveOrUpdateRole, getRoleById} from '@/services/menu'
 export default {
   name: "CreateOrEditRole",
   props:{
@@ -48,6 +48,7 @@ export default {
   created(){
       if(this.isEdit){
           console.log('这是编辑操作');
+          this.loadRole()
       }
   },
   methods:{
@@ -56,6 +57,11 @@ export default {
           this.$message.success('操作成功')
           this.$emit('success')
 
+      },
+      async loadRole(){
+        const {data} = await getRoleById(this.roleId)
+        console.log(data)
+        this.role = data.data
       }
   }
 };

@@ -57,3 +57,34 @@ export const deleteRole = (id: number) =>{
       url: `/boss/role/${id}`,
     })
 }
+export const getRoleById = (id: number | string) =>{
+  return request({
+      method: "GET",
+      url: `/boss/role/${id}`,
+    })
+}
+
+export const getMenuNodeList = () =>{
+  return request({
+      method: "GET",
+      url:'/boss/menu/getMenuNodeList',
+    })
+}
+
+export const allocateRoleMenus = (data: any) =>{
+  return request({
+      method: "POST",
+      url:'/boss/menu/allocateRoleMenus',
+      data
+    })
+}
+
+export const getRoleMenus = (roleId: string | number) =>{
+  return request({
+      method: "GET",
+      url:'/boss/menu/getRoleMenus',
+      params:{
+        roleId
+      },
+    })
+}

@@ -17,7 +17,12 @@
       <el-table-column prop="createdTime" label="添加时间"> </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleDelete(scope.row)"
+          <el-button size="mini" @click="$router.push({
+            name:'alloc-menu',
+            params:{
+              roleId:scope.row.id
+            }
+            })"
             >分配菜单</el-button
           >
           <el-button size="mini" @click="handleDelete(scope.row)"
@@ -31,7 +36,7 @@
       </el-table-column>
     </el-table>
         <el-dialog
-        title="添加角色"
+        :title="isEdit ? '编辑角色' : '添加角色'"
         :visible.sync="dialogVisible"
         width="30%">
 <create-or-edit v-if="dialogVisible" :is-edit="isEdit" :role-id="roleId" @cancel="dialogVisible = false" @success = "onSuccess"></create-or-edit>        </el-dialog>
